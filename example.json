@@ -5,7 +5,7 @@
       "dirichlet": {
         "distribution": {
           "type": "Dirichlet",
-          "generates": "Dirichlet",
+          "generates": "REAL_VECTOR",
           "parameters": {
             "alpha": [
               1.0,
@@ -21,10 +21,10 @@
       "logNormal": {
         "distribution": {
           "type": "LogNormal",
-          "generates": "LogNormal",
+          "generates": "REAL",
           "parameters": {
-            "mean_log": 1.0,
-            "sd_log": 0.5
+            "meanlog": 1.0,
+            "sdlog": 0.5
           }
         }
       }
@@ -33,10 +33,10 @@
       "logNormal2": {
         "distribution": {
           "type": "LogNormal",
-          "generates": "LogNormal",
+          "generates": "REAL",
           "parameters": {
-            "mean_log": 0,
-            "sd_log": 0.5
+            "meanlog": 0,
+            "sdlog": 0.5
           }
         }
       }
@@ -45,10 +45,10 @@
       "logNormal3": {
         "distribution": {
           "type": "LogNormal",
-          "generates": "LogNormal",
+          "generates": "REAL",
           "parameters": {
-            "mean_log": 1,
-            "sd_log": 0.5
+            "meanlog": 1,
+            "sdlog": 0.5
           }
         }
       }
@@ -57,7 +57,7 @@
       "discreteGamma": {
         "distribution": {
           "type": "DiscreteGamma",
-          "generates": "DiscreteGamma",
+          "generates": "REAL_VECTOR",
           "parameters": {
             "categories": 4,
             "shape": 0.5
@@ -69,7 +69,7 @@
       "exponential": {
         "distribution": {
           "type": "Exponential",
-          "generates": "Exponential",
+          "generates": "REAL",
           "parameters": {
             "rate": 10.0
           }
@@ -80,7 +80,7 @@
       "yule": {
         "distribution": {
           "type": "Yule",
-          "generates": "Yule",
+          "generates": "REAL",
           "parameters": {
             "birth_rate": {
               "variable": "exponential"
@@ -93,7 +93,7 @@
       "phyloCTMC": {
         "distribution": {
           "type": "PhyloCTMC",
-          "generates": "PhyloCTMC",
+          "generates": "ALIGNMENT",
           "parameters": {
             "Q": {
               "variable": "hKY"

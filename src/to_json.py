@@ -32,7 +32,7 @@ def _(
         distribution.name(): {
             "distribution": {
                 "type": type(distribution).__name__,
-                "generates": type(distribution).__name__,
+                "generates": distribution.producedType(),
                 "parameters": parameters,
             }
         }

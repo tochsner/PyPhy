@@ -13,10 +13,10 @@ from src.distributions import (
 from src.functions import HKY
 from src.to_json import to_json
 
-kappa_mixture = LogNormal(mean_log=1.0, sd_log=0.5)
+kappa_mixture = LogNormal(meanlog=1.0, sdlog=0.5)
 
 for i in range(2):
-    kappa_mixture += LogNormal(mean_log=i, sd_log=0.5)
+    kappa_mixture += LogNormal(meanlog=i, sdlog=0.5)
 
 baseFreqs = Dirichlet(alpha=[1.0, 1.0, 1.0, 1.0])
 

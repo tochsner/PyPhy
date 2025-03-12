@@ -3,7 +3,7 @@ from typing import TypeVar
 
 from attrs import define
 
-from src.main_types import Matrix, Tree
+from src.main_types import Matrix, Sequence, Tree
 from src.values import Distribution, Value
 
 
@@ -12,8 +12,8 @@ T = TypeVar("T")
 
 @define
 class LogNormal(Distribution[float]):
-    mean_log: Value[float]
-    sd_log: Value[float]
+    meanlog: Value[float]
+    sdlog: Value[float]
 
 
 @define
@@ -35,12 +35,6 @@ class Dirichlet(Distribution[list[float]]):
 @define
 class Yule(Distribution[Tree]):
     birth_rate: Value[float]
-
-
-@define
-class Sequence:
-    sequence: str
-    taxon: str
 
 
 @define
