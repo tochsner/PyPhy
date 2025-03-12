@@ -4,6 +4,7 @@ from typing import Generic, TypeVar
 
 from attrs import define
 
+from src.naming import pascal_to_camel_case
 from src.constraints import Constraint
 
 T = TypeVar("T")
@@ -13,11 +14,11 @@ class Node(ABC, Generic[T]):
     _used_names: set[str] = set()
 
     def __attrs_post_init__(self):
-        name = type(self).__name__
+        name = pascal_to_camel_case(type(self).__name__)
 
         suffix = 2
         while name in self._used_names:
-            name = f"{type(self).__name__}_{suffix}"
+            name = pascal_to_camel_case(f"{type(self).__name__}{suffix}")
             suffix += 1
 
         Node._used_names.add(name)
@@ -31,7 +32,7 @@ class Node(ABC, Generic[T]):
 
     def __mul__(self, other: Node[T]):
         return ChainedValues(self, other, "*")
-    
+
     def name(self):
         return self._name
 

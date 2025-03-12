@@ -13,3 +13,4 @@ This package allows to specify phylogenetic models in python and to convert them
 - We use [Poetry](https://python-poetry.org/) for dependency management.
 - Install dependencies with `poetry install`.
 - Run the example with `poetry run python example.py`.
+- In order to have type checking and autocompletion, use the [pylance VSCode extension](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance), [pyright](https://github.com/microsoft/pyright?tab=readme-ov-file), or [mypy](https://github.com/python/mypy).

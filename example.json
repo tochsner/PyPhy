@@ -1,7 +1,8 @@
 {
+  "model": "mymodel",
   "randomVariables": [
     {
-      "Dirichlet": {
+      "dirichlet": {
         "distribution": {
           "type": "Dirichlet",
           "generates": "Dirichlet",
@@ -17,7 +18,7 @@
       }
     },
     {
-      "LogNormal": {
+      "logNormal": {
         "distribution": {
           "type": "LogNormal",
           "generates": "LogNormal",
@@ -29,9 +30,9 @@
       }
     },
     {
-      "LogNormal_2": {
+      "logNormal2": {
         "distribution": {
-          "type": "LogNormal_2",
+          "type": "LogNormal",
           "generates": "LogNormal",
           "parameters": {
             "mean_log": 0,
@@ -41,9 +42,9 @@
       }
     },
     {
-      "LogNormal_3": {
+      "logNormal3": {
         "distribution": {
-          "type": "LogNormal_3",
+          "type": "LogNormal",
           "generates": "LogNormal",
           "parameters": {
             "mean_log": 1,
@@ -53,7 +54,7 @@
       }
     },
     {
-      "DiscreteGamma": {
+      "discreteGamma": {
         "distribution": {
           "type": "DiscreteGamma",
           "generates": "DiscreteGamma",
@@ -65,7 +66,7 @@
       }
     },
     {
-      "Exponential": {
+      "exponential": {
         "distribution": {
           "type": "Exponential",
           "generates": "Exponential",
@@ -76,32 +77,32 @@
       }
     },
     {
-      "Yule": {
+      "yule": {
         "distribution": {
           "type": "Yule",
           "generates": "Yule",
           "parameters": {
             "birth_rate": {
-              "variable": "Exponential"
+              "variable": "exponential"
             }
           }
         }
       }
     },
     {
-      "PhyloCTMC": {
+      "phyloCTMC": {
         "distribution": {
           "type": "PhyloCTMC",
           "generates": "PhyloCTMC",
           "parameters": {
             "Q": {
-              "variable": "HKY"
+              "variable": "hKY"
             },
             "site_rates": {
-              "variable": "DiscreteGamma"
+              "variable": "discreteGamma"
             },
             "tree": {
-              "variable": "Yule"
+              "variable": "yule"
             }
           },
           "observedValue": [
@@ -124,14 +125,14 @@
   ],
   "deterministicFunctions": [
     {
-      "HKY": {
-        "function": "HKY",
+      "hKY": {
+        "function": "hKY",
         "arguments": {
           "base_frequencies": {
-            "variable": "Dirichlet"
+            "variable": "dirichlet"
           },
           "kappa": {
-            "variable": "LogNormal + LogNormal_2 + LogNormal_3"
+            "variable": "logNormal + logNormal2 + logNormal3"
           }
         }
       }

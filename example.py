@@ -39,4 +39,4 @@ sequences.observe(
 )
 
 with open("example.json", "w") as handle:
-    json.dump(to_json(sequences), handle, indent=2)
+    json.dump(to_json(sequences, "mymodel"), handle, indent=2)

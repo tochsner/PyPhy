@@ -110,13 +110,14 @@ def _(
     }
 
 
-def to_json(obj):
+def to_json(obj, model_name: str):
     random_variables = []
     deterministic_functions = []
 
     _to_json(obj, random_variables, deterministic_functions)
 
     return {
+        "model": model_name,
         "randomVariables": random_variables,
         "deterministicFunctions": deterministic_functions,
     }
