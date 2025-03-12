@@ -6,7 +6,7 @@ authors = ["Tobia Ochsner <tobia.ochsner@hotmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.13"
 attrs = "^25.2.0"
 
 
