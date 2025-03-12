@@ -1,141 +1,123 @@
 {
   "model": "mymodel",
-  "randomVariables": [
-    {
-      "dirichlet": {
-        "distribution": {
-          "type": "Dirichlet",
-          "generates": "REAL_VECTOR",
-          "parameters": {
-            "alpha": [
-              1.0,
-              1.0,
-              1.0,
-              1.0
-            ]
-          }
-        }
-      }
-    },
-    {
-      "logNormal": {
-        "distribution": {
-          "type": "LogNormal",
-          "generates": "REAL",
-          "parameters": {
-            "meanlog": 1.0,
-            "sdlog": 0.5
-          }
-        }
-      }
-    },
-    {
-      "logNormal2": {
-        "distribution": {
-          "type": "LogNormal",
-          "generates": "REAL",
-          "parameters": {
-            "meanlog": 0,
-            "sdlog": 0.5
-          }
-        }
-      }
-    },
-    {
-      "logNormal3": {
-        "distribution": {
-          "type": "LogNormal",
-          "generates": "REAL",
-          "parameters": {
-            "meanlog": 1,
-            "sdlog": 0.5
-          }
-        }
-      }
-    },
-    {
-      "discreteGamma": {
-        "distribution": {
-          "type": "DiscreteGamma",
-          "generates": "REAL_VECTOR",
-          "parameters": {
-            "categories": 4,
-            "shape": 0.5
-          }
-        }
-      }
-    },
-    {
-      "exponential": {
-        "distribution": {
-          "type": "Exponential",
-          "generates": "REAL",
-          "parameters": {
-            "rate": 10.0
-          }
-        }
-      }
-    },
-    {
-      "yule": {
-        "distribution": {
-          "type": "Yule",
-          "generates": "REAL",
-          "parameters": {
-            "birth_rate": {
-              "variable": "exponential"
-            }
-          }
-        }
-      }
-    },
-    {
-      "phyloCTMC": {
-        "distribution": {
-          "type": "PhyloCTMC",
-          "generates": "ALIGNMENT",
-          "parameters": {
-            "Q": {
-              "variable": "hKY"
-            },
-            "site_rates": {
-              "variable": "discreteGamma"
-            },
-            "tree": {
-              "variable": "yule"
-            }
-          },
-          "observedValue": [
-            {
-              "taxon": "human",
-              "sequence": "ACGTACGTACGTACGTACGTACGT"
-            },
-            {
-              "taxon": "chimp",
-              "sequence": "ACGTACGTACGTACGTATGTACGT"
-            },
-            {
-              "taxon": "gorilla",
-              "sequence": "ACGTACGTACGCACGTACGTACG"
-            }
+  "randomVariables": {
+    "dirichlet": {
+      "distribution": {
+        "type": "Dirichlet",
+        "generates": "REAL_VECTOR",
+        "parameters": {
+          "alpha": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
           ]
         }
       }
-    }
-  ],
-  "deterministicFunctions": [
-    {
-      "hKY": {
-        "function": "hKY",
-        "arguments": {
-          "base_frequencies": {
-            "variable": "dirichlet"
-          },
-          "kappa": {
-            "variable": "logNormal + logNormal2 + logNormal3"
+    },
+    "logNormal": {
+      "distribution": {
+        "type": "LogNormal",
+        "generates": "SEQUENCE",
+        "parameters": {
+          "meanlog": 1.0,
+          "sdlog": 0.5
+        }
+      }
+    },
+    "logNormal2": {
+      "distribution": {
+        "type": "LogNormal",
+        "generates": "SEQUENCE",
+        "parameters": {
+          "meanlog": 0,
+          "sdlog": 0.5
+        }
+      }
+    },
+    "logNormal3": {
+      "distribution": {
+        "type": "LogNormal",
+        "generates": "SEQUENCE",
+        "parameters": {
+          "meanlog": 1,
+          "sdlog": 0.5
+        }
+      }
+    },
+    "discreteGamma": {
+      "distribution": {
+        "type": "DiscreteGamma",
+        "generates": "REAL_VECTOR",
+        "parameters": {
+          "categories": 4,
+          "shape": 0.5
+        }
+      }
+    },
+    "exponential": {
+      "distribution": {
+        "type": "Exponential",
+        "generates": "SEQUENCE",
+        "parameters": {
+          "rate": 10.0
+        }
+      }
+    },
+    "yule": {
+      "distribution": {
+        "type": "Yule",
+        "generates": "TREE",
+        "parameters": {
+          "birth_rate": {
+            "variable": "exponential"
           }
         }
       }
+    },
+    "phyloCTMC": {
+      "distribution": {
+        "type": "PhyloCTMC",
+        "generates": "ALIGNMENT",
+        "parameters": {
+          "Q": {
+            "variable": "hKY"
+          },
+          "site_rates": {
+            "variable": "discreteGamma"
+          },
+          "tree": {
+            "variable": "yule"
+          }
+        },
+        "observedValue": [
+          {
+            "taxon": "human",
+            "sequence": "ACGTACGTACGTACGTACGTACGT"
+          },
+          {
+            "taxon": "chimp",
+            "sequence": "ACGTACGTACGTACGTATGTACGT"
+          },
+          {
+            "taxon": "gorilla",
+            "sequence": "ACGTACGTACGCACGTACGTACG"
+          }
+        ]
+      }
     }
-  ]
+  },
+  "deterministicFunctions": {
+    "hKY": {
+      "function": "hKY",
+      "arguments": {
+        "base_frequencies": {
+          "variable": "dirichlet"
+        },
+        "kappa": {
+          "variable": "logNormal + logNormal2 + logNormal3"
+        }
+      }
+    }
+  }
 }
