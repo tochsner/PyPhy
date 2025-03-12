@@ -31,7 +31,7 @@ def _(
     json = {
         distribution.name(): {
             "distribution": {
-                "type": distribution.name(),
+                "type": type(distribution).__name__,
                 "generates": type(distribution).__name__,
                 "parameters": parameters,
             }

@@ -12,6 +12,17 @@ T = TypeVar("T")
 class Node(ABC, Generic[T]):
     _used_names: set[str] = set()
 
+    def __attrs_post_init__(self):
+        name = type(self).__name__
+
+        suffix = 2
+        while name in self._used_names:
+            name = f"{type(self).__name__}_{suffix}"
+            suffix += 1
+
+        Node._used_names.add(name)
+        self._name = name
+
     def __add__(self, other: Node[T]):
         return ChainedValues(self, other, "+")
 
@@ -20,39 +31,28 @@ class Node(ABC, Generic[T]):
 
     def __mul__(self, other: Node[T]):
         return ChainedValues(self, other, "*")
-
+    
     def name(self):
-        if hasattr(self, "_name"):
-            return self._name
-
-        name = type(self).__name__
-
-        suffix = 2
-        while name in self._used_names:
-            name = f"{type(self).__name__}_{suffix}"
-            suffix += 1
-
-        self._used_names.add(name)
-        self._name = name
-
-        return name
+        return self._name
 
 
 class Function(Generic[T], Node[T]): ...
 
 
 class Distribution(Generic[T], Node[T]):
+    def __attrs_post_init__(self):
+        super().__attrs_post_init__()
+
+        self._constraints = []
+        self._observation = None
 
     def observe(self, observation):
         self._observation = observation
 
     def get_observation(self):
-        return self._observation if hasattr(self, "_observation") else None
+        return self._observation
 
     def add_constraint(self, constraint: Constraint):
-        if not hasattr(self, "_observation"):
-            self._constraints = []
-
         self._constraints.append(constraint)
 
 
@@ -66,4 +66,6 @@ class ChainedValues(Distribution[T]):
         return f"{self.left.name()} {self.operator} {self.right.name()}"
 
 
-type Value[T] = T | ChainedValues[T] | Distribution[T] | Function[T] | Node[T] | ChainedValues[Value[T]]
+type Value[T] = T | ChainedValues[T] | Distribution[T] | Function[T] | Node[
+    T
+] | ChainedValues[Value[T]]

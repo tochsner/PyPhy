@@ -1,1 +1,140 @@
-{"randomVariables": [{"Dirichlet": {"distribution": {"type": "Dirichlet", "generates": "Dirichlet", "parameters": {"alpha": [1.0, 1.0, 1.0, 1.0]}}}}, {"LogNormal": {"distribution": {"type": "LogNormal", "generates": "LogNormal", "parameters": {"mean_log": 1.0, "sd_log": 0.5}}}}, {"LogNormal_2": {"distribution": {"type": "LogNormal_2", "generates": "LogNormal", "parameters": {"mean_log": 0, "sd_log": 0.5}}}}, {"LogNormal_3": {"distribution": {"type": "LogNormal_3", "generates": "LogNormal", "parameters": {"mean_log": 1, "sd_log": 0.5}}}}, {"DiscreteGamma": {"distribution": {"type": "DiscreteGamma", "generates": "DiscreteGamma", "parameters": {"categories": 4, "shape": 0.5}}}}, {"Exponential": {"distribution": {"type": "Exponential", "generates": "Exponential", "parameters": {"rate": 10.0}}}}, {"Yule": {"distribution": {"type": "Yule", "generates": "Yule", "parameters": {"birth_rate": {"variable": "Exponential"}}}}}, {"PhyloCTMC": {"distribution": {"type": "PhyloCTMC", "generates": "PhyloCTMC", "parameters": {"Q": {"variable": "HKY"}, "site_rates": {"variable": "DiscreteGamma"}, "tree": {"variable": "Yule"}}, "observedValue": [{"taxon": "human", "sequence": "ACGTACGTACGTACGTACGTACGT"}, {"taxon": "chimp", "sequence": "ACGTACGTACGTACGTATGTACGT"}, {"taxon": "gorilla", "sequence": "ACGTACGTACGCACGTACGTACG"}]}}}], "deterministicFunctions": [{"HKY": {"function": "HKY", "arguments": {"base_frequencies": {"variable": "Dirichlet"}, "kappa": {"variable": "LogNormal + LogNormal_2 + LogNormal_3"}}}}]}
+{
+  "randomVariables": [
+    {
+      "Dirichlet": {
+        "distribution": {
+          "type": "Dirichlet",
+          "generates": "Dirichlet",
+          "parameters": {
+            "alpha": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ]
+          }
+        }
+      }
+    },
+    {
+      "LogNormal": {
+        "distribution": {
+          "type": "LogNormal",
+          "generates": "LogNormal",
+          "parameters": {
+            "mean_log": 1.0,
+            "sd_log": 0.5
+          }
+        }
+      }
+    },
+    {
+      "LogNormal_2": {
+        "distribution": {
+          "type": "LogNormal_2",
+          "generates": "LogNormal",
+          "parameters": {
+            "mean_log": 0,
+            "sd_log": 0.5
+          }
+        }
+      }
+    },
+    {
+      "LogNormal_3": {
+        "distribution": {
+          "type": "LogNormal_3",
+          "generates": "LogNormal",
+          "parameters": {
+            "mean_log": 1,
+            "sd_log": 0.5
+          }
+        }
+      }
+    },
+    {
+      "DiscreteGamma": {
+        "distribution": {
+          "type": "DiscreteGamma",
+          "generates": "DiscreteGamma",
+          "parameters": {
+            "categories": 4,
+            "shape": 0.5
+          }
+        }
+      }
+    },
+    {
+      "Exponential": {
+        "distribution": {
+          "type": "Exponential",
+          "generates": "Exponential",
+          "parameters": {
+            "rate": 10.0
+          }
+        }
+      }
+    },
+    {
+      "Yule": {
+        "distribution": {
+          "type": "Yule",
+          "generates": "Yule",
+          "parameters": {
+            "birth_rate": {
+              "variable": "Exponential"
+            }
+          }
+        }
+      }
+    },
+    {
+      "PhyloCTMC": {
+        "distribution": {
+          "type": "PhyloCTMC",
+          "generates": "PhyloCTMC",
+          "parameters": {
+            "Q": {
+              "variable": "HKY"
+            },
+            "site_rates": {
+              "variable": "DiscreteGamma"
+            },
+            "tree": {
+              "variable": "Yule"
+            }
+          },
+          "observedValue": [
+            {
+              "taxon": "human",
+              "sequence": "ACGTACGTACGTACGTACGTACGT"
+            },
+            {
+              "taxon": "chimp",
+              "sequence": "ACGTACGTACGTACGTATGTACGT"
+            },
+            {
+              "taxon": "gorilla",
+              "sequence": "ACGTACGTACGCACGTACGTACG"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "deterministicFunctions": [
+    {
+      "HKY": {
+        "function": "HKY",
+        "arguments": {
+          "base_frequencies": {
+            "variable": "Dirichlet"
+          },
+          "kappa": {
+            "variable": "LogNormal + LogNormal_2 + LogNormal_3"
+          }
+        }
+      }
+    }
+  ]
+}
