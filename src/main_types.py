@@ -7,7 +7,7 @@ T = TypeVar("T")
 
 
 @define
-class DNASequence:
+class ObservedSequence:
     sequence: str
     taxon: str
 
@@ -27,11 +27,11 @@ def get_base_type_name(python_type: type):
         return "REAL_VECTOR"
     elif isinstance(python_type, type(list[Any])) and get_args(python_type)[0] == float:
         return "REAL_VECTOR"
-    elif isinstance(python_type, type(DNASequence)):
+    elif isinstance(python_type, type(ObservedSequence)):
         return "SEQUENCE"
     elif (
         isinstance(python_type, type(list[Any]))
-        and get_args(python_type)[0] == DNASequence
+        and get_args(python_type)[0] == ObservedSequence
     ):
         return "ALIGNMENT"
 

@@ -1,3 +1,6 @@
+"""Basic HKY model with Yule tree prior
+This example specifies an HKY substitution model with a Yule tree prior"
+"""
 import json
 
 from src.constraints import LessThan
@@ -7,7 +10,7 @@ from src.distributions import (
     Exponential,
     LogNormal,
     PhyloCTMC,
-    DNASequence,
+    ObservedSequence,
     Yule,
 )
 from src.functions import HKY
@@ -32,9 +35,9 @@ siteRates = DiscreteGamma(shape=0.5, categories=4)
 sequences = PhyloCTMC(tree=phylogeny, Q=substModel, site_rates=siteRates)
 sequences.observe(
     [
-        DNASequence("ACGTACGTACGTACGTACGTACGT", "human"),
-        DNASequence("ACGTACGTACGTACGTATGTACGT", "chimp"),
-        DNASequence("ACGTACGTACGCACGTACGTACG", "gorilla"),
+        ObservedSequence("ACGTACGTACGTACGTACGTACGT", "human"),
+        ObservedSequence("ACGTACGTACGTACGTATGTACGT", "chimp"),
+        ObservedSequence("ACGTACGTACGCACGTACGTACG", "gorilla"),
     ],
 )
 

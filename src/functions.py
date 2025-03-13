@@ -13,5 +13,5 @@ class HKY(Function[Matrix]):
 
 @define
 class GTR(Function[Matrix]):
-    rate_matrix: Value[Sequence[Value[float]]]
+    rates: Value[Sequence[Value[float]]]
     base_frequencies: Value[Sequence[Value[float]]]

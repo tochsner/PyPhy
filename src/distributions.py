@@ -3,7 +3,7 @@ from typing import Sequence, TypeVar
 
 from attrs import define
 
-from src.main_types import Matrix, DNASequence, Tree
+from src.main_types import Matrix, ObservedSequence, Tree
 from src.values import Distribution, Value
 
 
@@ -56,19 +56,19 @@ class BirthDeath(Distribution[Tree]):
 
 
 @define
-class PhyloCTMC(Distribution[list[DNASequence]]):
+class PhyloCTMC(Distribution[list[ObservedSequence]]):
     tree: Value[Tree]
     Q: Value[Matrix]
     site_rates: Value[Sequence[Value[float]]]
 
-    def observe(self, observation: list[DNASequence]):
+    def observe(self, observation: list[ObservedSequence]):
         super().observe(observation)
 
 
 @define
-class DiscreteTraitPhyloCTMC(Distribution[list[DNASequence]]):
+class DiscreteTraitPhyloCTMC(Distribution[list[ObservedSequence]]):
     tree: Value[Tree]
     Q: Value[Matrix]
 
-    def observe(self, observation: list[DNASequence]):
+    def observe(self, observation: list[ObservedSequence]):
         super().observe(observation)
