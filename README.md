@@ -6,7 +6,7 @@ This is a very early work in progress as an example of a way a phylogenetic inte
 
 ## Key features
 
-- Allows specification of models using a familiar Python syntax, including functions, if-then-else statements, and for-loops.
+- Allows specification of models using a familiar Python syntax, including functions, if-then-else statements, for-loops, or list comprehension.
 - Excellent tooling support (autocompletion, static type checking, etc.) thanks to a fully-typed interface.
 
 ## Getting started
