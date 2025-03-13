@@ -6,6 +6,7 @@ This is a very early work in progress as an example of a way a phylogenetic inte
 
 ## 👋 Quick start
 
+- See the [examples](examples) folder for some example model specifications.
 - Python 3.13 is required (we use modern type hints features like recursive type aliases).
 - We use [Poetry](https://python-poetry.org/) for dependency management.
 - Install dependencies with `poetry install`.
