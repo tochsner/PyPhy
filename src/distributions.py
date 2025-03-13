@@ -1,9 +1,9 @@
 from abc import ABC
-from typing import TypeVar
+from typing import Sequence, TypeVar
 
 from attrs import define
 
-from src.main_types import Matrix, Sequence, Tree
+from src.main_types import Matrix, DNASequence, Tree
 from src.values import Distribution, Value
 
 
@@ -29,7 +29,19 @@ class DiscreteGamma(Distribution[list[float]]):
 
 @define
 class Dirichlet(Distribution[list[float]]):
-    alpha: Value[list[float]]
+    alpha: Value[Sequence[Value[float]]]
+
+
+@define
+class CTMCRateMatrix(Distribution[Matrix]):
+    dimension: Value[int]
+    prior: Value[float]
+
+
+@define
+class DiscreteTrait(Distribution[Matrix]):
+    states: Value[Sequence[Value[str]]]
+    rateMatrix: Value[Matrix]
 
 
 @define
@@ -38,10 +50,25 @@ class Yule(Distribution[Tree]):
 
 
 @define
-class PhyloCTMC(Distribution[list[Sequence]]):
+class BirthDeath(Distribution[Tree]):
+    birth_rate: Value[float]
+    death_rate: Value[float]
+
+
+@define
+class PhyloCTMC(Distribution[list[DNASequence]]):
     tree: Value[Tree]
     Q: Value[Matrix]
-    site_rates: Value[list[float]]
+    site_rates: Value[Sequence[Value[float]]]
 
-    def observe(self, observation: list[Sequence]):
+    def observe(self, observation: list[DNASequence]):
+        super().observe(observation)
+
+
+@define
+class DiscreteTraitPhyloCTMC(Distribution[list[DNASequence]]):
+    tree: Value[Tree]
+    Q: Value[Matrix]
+
+    def observe(self, observation: list[DNASequence]):
         super().observe(observation)

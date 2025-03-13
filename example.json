@@ -15,62 +15,88 @@
         }
       }
     },
-    "logNormal": {
-      "distribution": {
-        "type": "LogNormal",
-        "generates": "SEQUENCE",
-        "parameters": {
-          "meanlog": 1.0,
-          "sdlog": 0.5
-        }
-      }
-    },
-    "logNormal2": {
-      "distribution": {
-        "type": "LogNormal",
-        "generates": "SEQUENCE",
-        "parameters": {
-          "meanlog": 0,
-          "sdlog": 0.5
-        }
-      }
-    },
-    "logNormal3": {
-      "distribution": {
-        "type": "LogNormal",
-        "generates": "SEQUENCE",
-        "parameters": {
-          "meanlog": 1,
-          "sdlog": 0.5
-        }
-      }
-    },
-    "discreteGamma": {
-      "distribution": {
-        "type": "DiscreteGamma",
-        "generates": "REAL_VECTOR",
-        "parameters": {
-          "categories": 4,
-          "shape": 0.5
-        }
-      }
-    },
     "exponential": {
       "distribution": {
         "type": "Exponential",
-        "generates": "SEQUENCE",
+        "generates": "REAL",
         "parameters": {
           "rate": 10.0
         }
       }
     },
-    "yule": {
+    "exponential2": {
       "distribution": {
-        "type": "Yule",
+        "type": "Exponential",
+        "generates": "REAL",
+        "parameters": {
+          "rate": 10.0
+        }
+      }
+    },
+    "exponential3": {
+      "distribution": {
+        "type": "Exponential",
+        "generates": "REAL",
+        "parameters": {
+          "rate": 10.0
+        }
+      }
+    },
+    "exponential4": {
+      "distribution": {
+        "type": "Exponential",
+        "generates": "REAL",
+        "parameters": {
+          "rate": 10.0
+        }
+      }
+    },
+    "exponential5": {
+      "distribution": {
+        "type": "Exponential",
+        "generates": "REAL",
+        "parameters": {
+          "rate": 10.0
+        }
+      }
+    },
+    "exponential6": {
+      "distribution": {
+        "type": "Exponential",
+        "generates": "REAL",
+        "parameters": {
+          "rate": 10.0
+        }
+      }
+    },
+    "exponential7": {
+      "distribution": {
+        "type": "Exponential",
+        "generates": "REAL",
+        "parameters": {
+          "rate": 10.0
+        }
+      }
+    },
+    "exponential8": {
+      "distribution": {
+        "type": "Exponential",
+        "generates": "REAL",
+        "parameters": {
+          "rate": 20.0
+        }
+      }
+    },
+    "birthDeath": {
+      "distribution": {
+        "type": "BirthDeath",
         "generates": "TREE",
         "parameters": {
           "birth_rate": {
-            "variable": "exponential"
+            "variable": "exponential7"
+          },
+          "death_rate": {
+            "variable": "exponential8"
           }
         }
       }
@@ -81,42 +107,48 @@
         "generates": "ALIGNMENT",
         "parameters": {
           "Q": {
-            "variable": "hKY"
+            "variable": "gTR"
           },
-          "site_rates": {
-            "variable": "discreteGamma"
-          },
+          "site_rates": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
           "tree": {
-            "variable": "yule"
+            "variable": "birthDeath"
           }
-        },
-        "observedValue": [
-          {
-            "taxon": "human",
-            "sequence": "ACGTACGTACGTACGTACGTACGT"
-          },
-          {
-            "taxon": "chimp",
-            "sequence": "ACGTACGTACGTACGTATGTACGT"
-          },
-          {
-            "taxon": "gorilla",
-            "sequence": "ACGTACGTACGCACGTACGTACG"
-          }
-        ]
+        }
       }
     }
   },
   "deterministicFunctions": {
-    "hKY": {
-      "function": "hKY",
+    "gTR": {
+      "function": "gTR",
       "arguments": {
         "base_frequencies": {
           "variable": "dirichlet"
         },
-        "kappa": {
-          "variable": "logNormal + logNormal2 + logNormal3"
-        }
+        "rate_matrix": [
+          {
+            "variable": "exponential"
+          },
+          {
+            "variable": "exponential2"
+          },
+          {
+            "variable": "exponential3"
+          },
+          {
+            "variable": "exponential4"
+          },
+          {
+            "variable": "exponential5"
+          },
+          {
+            "variable": "exponential6"
+          }
+        ]
       }
     }
   }

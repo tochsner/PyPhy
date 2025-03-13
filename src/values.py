@@ -8,7 +8,7 @@ from src.main_types import get_base_type_name
 from src.naming import pascal_to_camel_case
 from src.constraints import Constraint
 
-T = TypeVar("T")
+T = TypeVar("T", covariant=True)
 
 
 class Node(ABC, Generic[T]):

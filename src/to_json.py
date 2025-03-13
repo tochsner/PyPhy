@@ -1,6 +1,6 @@
 from functools import singledispatch
 
-from src.distributions import Sequence
+from src.distributions import DNASequence
 from src.values import ChainedValues, Distribution, Function
 
 
@@ -83,9 +83,9 @@ def _(
     return {"variable": function.name()}
 
 
-@_to_json.register(Sequence)
+@_to_json.register(DNASequence)
 def _(
-    sequence: Sequence,
+    sequence: DNASequence,
     random_variables: dict[str, dict],
     deterministic_functions: dict[str, dict],
 ):

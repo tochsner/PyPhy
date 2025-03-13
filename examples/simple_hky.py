@@ -7,7 +7,7 @@ from src.distributions import (
     Exponential,
     LogNormal,
     PhyloCTMC,
-    Sequence,
+    DNASequence,
     Yule,
 )
 from src.functions import HKY
@@ -32,9 +32,9 @@ siteRates = DiscreteGamma(shape=0.5, categories=4)
 sequences = PhyloCTMC(tree=phylogeny, Q=substModel, site_rates=siteRates)
 sequences.observe(
     [
-        Sequence("ACGTACGTACGTACGTACGTACGT", "human"),
-        Sequence("ACGTACGTACGTACGTATGTACGT", "chimp"),
-        Sequence("ACGTACGTACGCACGTACGTACG", "gorilla"),
+        DNASequence("ACGTACGTACGTACGTACGTACGT", "human"),
+        DNASequence("ACGTACGTACGTACGTATGTACGT", "chimp"),
+        DNASequence("ACGTACGTACGCACGTACGTACG", "gorilla"),
     ],
 )
 
