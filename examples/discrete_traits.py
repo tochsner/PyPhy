@@ -2,6 +2,7 @@
 This example demonstrates a model for the evolution of a discrete trait
 (geographic location) along with sequence evolution.
 """
+
 import json
 
 from src.distributions import (
@@ -16,7 +17,6 @@ from src.distributions import (
 )
 from src.functions import GTR
 from src.to_json import to_json
-
 
 # Substitution Model for Sequence Data
 
@@ -35,14 +35,14 @@ phylogeny = BirthDeath(birth_rate=birth_rate, death_rate=death_rate)
 # Trait Evolution Model
 
 regions = ["Africa", "Asia", "Europe", "North_America"]
-qMatrix = CTMCRateMatrix(dimension=4, prior=Exponential(rate=10.0))
+q_matrix = CTMCRateMatrix(dimension=4, prior=Exponential(rate=10.0))
 
-traitModel = DiscreteTrait(states=regions, rateMatrix=qMatrix)
+trait_model = DiscreteTrait(states=regions, rateMatrix=q_matrix)
 
 # Trait Data
 
-geoTraits = DiscreteTraitPhyloCTMC(tree=phylogeny, Q=traitModel)
-geoTraits.observe(
+geo_traits = DiscreteTraitPhyloCTMC(tree=phylogeny, Q=trait_model)
+geo_traits.observe(
     [
         ObservedSequence("Africa", "taxon1"),
         ObservedSequence("Africa", "taxon2"),
